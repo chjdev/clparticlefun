@@ -58,7 +58,7 @@ template<typename T>
 class Executor : boost::noncopyable
 {
 public:
-    typedef std::tr1::function<void (ExecutorBundle&, typename T::data_t&)> stategy_func_t;
+    typedef std::tr1::function<void (ExecutorBundle&, typename T::data_t&)> strategy_func_t;
 
     Executor();
 
@@ -68,12 +68,12 @@ public:
     void load(typename T::data_t& data) { m_load_func(bundle, data); }
     void load(std::tr1::shared_ptr<typename T::data_t> data) { m_load_func(bundle, *data); }
 
-    void set_exec_func(const stategy_func_t& e) { m_exec_func = e; }
-    void set_load_func(const stategy_func_t& l) { m_load_func = l; }
+    void set_exec_func(const strategy_func_t& e) { m_exec_func = e; }
+    void set_load_func(const strategy_func_t& l) { m_load_func = l; }
 
 private:
-    stategy_func_t m_load_func;
-    stategy_func_t m_exec_func;
+    strategy_func_t m_load_func;
+    strategy_func_t m_exec_func;
 
     ExecutorBundle bundle;
 };
